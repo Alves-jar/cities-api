@@ -2,9 +2,9 @@
   "name": "cities-api",
   "scripts": {
     "dev": "nodemon",
-    "start": "tsc -p tsconfig.build.json && node ./build/index.js",
+    "start": "tsc -p tsconfig.build.json --listFiles && node ./build/index.js",
     "test": "jest"
-  },
+    },
   "devDependencies": {
     "@eslint/css": "^0.14.1",
     "@eslint/js": "^9.39.2",
