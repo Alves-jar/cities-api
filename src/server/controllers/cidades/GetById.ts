@@ -3,6 +3,7 @@ import * as yup from 'yup';
 
 import { validation } from '../../shared/middleware';
 import { StatusCodes } from 'http-status-codes';
+import { CidadesProvider } from '../../database/providers/cidades';
 
 
 interface IParamProps {
@@ -17,14 +18,14 @@ export const getByIdValidation = validation((getSchema) => ({
 
 export const getById = async (req: Request<IParamProps>, res: Response) => {
 
-    if (Number(req.params.id) === 99999) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    const id = Number(req.params.id);
+    if (!id || !(typeof id === 'number')) return res.status(StatusCodes.NOT_FOUND).json({
         errors: {
-            default: 'Registro não encontrado',
+            default: 'O Id deve ser um número',
         },
     });
 
-    return res.status(StatusCodes.OK).json({
-        id: req.params.id,
-        nome: 'São Paulo',
-    });
+    const result = await CidadesProvider.getById(id);
+
+    return res.status(StatusCodes.OK).json(result);
 };
