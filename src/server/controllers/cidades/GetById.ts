@@ -18,14 +18,22 @@ export const getByIdValidation = validation((getSchema) => ({
 
 export const getById = async (req: Request<IParamProps>, res: Response) => {
 
-    const id = Number(req.params.id);
-    if (!id || !(typeof id === 'number')) return res.status(StatusCodes.NOT_FOUND).json({
-        errors: {
-            default: 'O Id deve ser um número',
-        },
-    });
+    if (!req.params.id) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: 'O parâmetro "id" precisa ser informado',
+            },
+        });
+    }
 
-    const result = await CidadesProvider.getById(id);
+    const result = await CidadesProvider.getById(req.params.id);
+    if (result instanceof Error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message,
+            },
+        });
+    }
 
     return res.status(StatusCodes.OK).json(result);
 };
