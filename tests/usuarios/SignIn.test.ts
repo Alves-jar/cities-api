@@ -2,7 +2,6 @@ import { StatusCodes } from 'http-status-codes';
 
 import { testServer } from '../jest.setup';
 
-
 describe('Usuários - SignIn', () => {
     beforeAll(async () => {
         await testServer.post('/cadastrar').send({

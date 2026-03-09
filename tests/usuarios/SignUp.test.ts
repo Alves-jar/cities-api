@@ -2,7 +2,6 @@ import { StatusCodes } from 'http-status-codes';
 
 import { testServer } from '../jest.setup';
 
-
 describe('Usuário - SignUp', () => {
     it('Cadastra usuário 1', async () => {
         const res1 = await testServer
@@ -107,7 +106,7 @@ describe('Usuário - SignUp', () => {
             .post('/cadastrar')
             .send({
                 senha: '123456',
-                nome: 'Ju',
+                nome: 'Te',
                 email: 'testsilva@gmail.com',
             });
         expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
