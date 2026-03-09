@@ -2,7 +2,8 @@
   "name": "cities-api",
   "scripts": {
     "dev": "nodemon",
-    "start": "tsc -p tsconfig.build.json --listFiles && node ./build/index.js",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node ./build/index.js",
     "knex:migrate": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:latest",
     "knex:rollback": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback",
     "knex:rollback-all": "knex --knexfile ./src/server/database/knex/Environment.ts migrate:rollback --all",
