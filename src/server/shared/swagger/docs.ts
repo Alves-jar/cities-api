@@ -12,7 +12,7 @@ export const swaggerSpec = swaggerJSDoc({
 
         servers: [
             {
-                url: 'http://localhost:3003',
+                url: 'https://cities-api-4kol.onrender.com',
             },
         ],
 
