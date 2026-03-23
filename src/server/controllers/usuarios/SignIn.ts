@@ -1,3 +1,53 @@
+/**
+ * @swagger
+ * /usuarios/sign-in:
+ *   post:
+ *     summary: Autentica um usuário
+ *     tags:
+ *       - Usuários
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - senha
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: "usuario@email.com"
+ *               senha:
+ *                 type: string
+ *                 minLength: 6
+ *                 example: "123456"
+ *     responses:
+ *       200:
+ *         description: Usuário autenticado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                   example: "jwt.token.aqui"
+ *       401:
+ *         description: Email ou senha inválidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Erro ao gerar token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
