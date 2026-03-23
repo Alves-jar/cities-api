@@ -1,3 +1,34 @@
+/**
+ * @swagger
+ * /pessoas/{id}:
+ *   delete:
+ *     summary: Deleta uma pessoa pelo ID
+ *     tags:
+ *       - Pessoas
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID da pessoa
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           example: 1
+ *     responses:
+ *       204:
+ *         description: Pessoa deletada com sucesso
+ *       400:
+ *         description: ID inválido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       404:
+ *         description: Pessoa não encontrada
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';

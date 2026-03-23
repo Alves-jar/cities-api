@@ -1,3 +1,46 @@
+/**
+ * @swagger
+ * /pessoas:
+ *   get:
+ *     summary: Lista pessoas com paginação
+ *     tags:
+ *       - Pessoas
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 7
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *           example: "João"
+ *     responses:
+ *       200:
+ *         description: Lista de pessoas
+ *         headers:
+ *           x-total-count:
+ *             description: Total de registros
+ *             schema:
+ *               type: integer
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Pessoa'
+ *       500:
+ *         description: Erro interno do servidor
+ */
+
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';

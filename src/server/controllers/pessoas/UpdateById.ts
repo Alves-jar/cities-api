@@ -1,3 +1,34 @@
+/**
+ * @swagger
+ * /pessoas/{id}:
+ *   get:
+ *     summary: Busca uma pessoa pelo ID
+ *     tags:
+ *       - Pessoas
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID da pessoa
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           example: 1
+ *     responses:
+ *       200:
+ *         description: Pessoa encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Pessoa'
+ *       400:
+ *         description: ID inválido
+ *       404:
+ *         description: Pessoa não encontrada
+ *       500:
+ *         description: Erro interno
+ */
+
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
@@ -41,5 +72,5 @@ export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res:
         });
     }
 
-    return res.status(StatusCodes.NO_CONTENT).json(result);
+    return res.status(StatusCodes.OK).json(result);
 };
